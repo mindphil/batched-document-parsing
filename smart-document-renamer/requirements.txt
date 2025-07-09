@@ -1,0 +1,16 @@
+import os
+from datetime import datetime
+import pandas as pd
+import re
+from pypdf import PdfReader
+import datefinder
+from rapidfuzz import process
+from dateutil import parser as date_parser
+
+# List of required packages for the project
+pypdf
+pandas
+python-dateutil
+rapidfuzz
+datefinder
+```
