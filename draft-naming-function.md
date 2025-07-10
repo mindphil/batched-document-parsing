@@ -1,4 +1,4 @@
-build_draft_filename_auto;
+`build_draft_filename_auto`
 This function builds a standardized filename for draft documents. 
 It tries to guess the vendor from the filename, gets the last modified date, detects the document type, and finds the relationship manager’s initials.
 It then combines all these pieces into a filename like:YYYYMMDD-ISO-VendorName-DocType-RMInitials
