@@ -19,11 +19,12 @@ If nothing is found, it returns `None`. This is a targeted way to find the “re
 `select_pdf_date_for_naming`
 This is the main function that pulls everything together to extract the most appropriate date from a PDF for naming purposes.
 
-- It starts by figuring out the document type from the filename, since some types (like Annexes) have special rules.
-- It opens the PDF and extracts text from the first and last pages, since those are where legal and signature dates usually appear.
+- It starts by figuring out the document type from the filename.
+    The reason behind this inclusion was specific documents in my usecase had featured the appropriate date in the same place.
+- It opens the PDF and extracts text from the first and last pages, since those are where all dates usually appear.
 - The text is cleaned up to make pattern matching easier.
-- If the document is an Annex, it looks for all dates on the first page and picks the earliest one.
-- Otherwise, it tries to find an “effective date” using `find_effective_date_context` on the combined text of the first and last pages.
+- If the document is an 'Legal' (arbirtrary), it looks for all dates on the first page and picks the earliest one.
+- Otherwise, it tries to find an “effective date” phrase using `find_effective_date_context` on the combined text of the first and last pages.
 - If that doesn’t work, it looks for signature-related phrases on the last page and grabs the latest date found there.
 - If all else fails, it collects all dates from both pages, removes duplicates, sorts them, and picks the latest one.
 - If no valid dates are found, it returns "Review" to flag the file for manual checking.
@@ -34,5 +35,5 @@ The whole function is wrapped in a try-except block, so if anything goes wrong (
 `build_executed_filename_auto`
 This function creates a standardized filename for executed (finalized) documents.
 It tries to guess the vendor from the filename, extracts the most relevant date using `select_pdf_date_for_naming`, detects the document type, and then combines all these pieces into a filename like:  
-`YYYYMMDD-ISO-VendorName-DocType`  
+`YYYYMMDD-ORG-VendorName-DocType`  
 If any part can’t be determined, it uses a placeholder (like "UnknownVendor" or "Review").
