@@ -1,21 +1,19 @@
 ## Why This Exists
 
-Manually renaming legal and vendor documents is tedious and error-prone, especially when filenames must encode key metadata for compliance and searchability. This tool automates the process by extracting dates, document types, and vendor names from file content and filenames, then applies a consistent naming convention.
+Renaming legal and vendor documents manually is often tedious and prone to errors, especially when filenames need to incorporate key metadata for compliance and searchability. Initially, I developed this program to reduce some of the tedious work at my job. However, I decided to generalize its functionality as much as possible. This tool automates the renaming process by extracting relevant information such as dates, document types, and vendor names from both the file content and the filenames, and then applies a consistent naming convention.
 
 ## File Naming Standard
 
 Renamed files follow the specific pattern I use at work but can be easily amended: 
 
 ```
-YYYYMMDD-ISO-VendorName-DocType[-RMInitials]
+YYYYMMDD-ORG-VendorName-DocType[-OwnerInitials]
 ```
 - `YYYYMMDD`: Key date (last modified, effective, or signature date)
-- `ISO`: Organization code
+- `ORG`: Organization acronym
 - `VendorName`: Inferred from filename or metadata
 - `DocType`: Detected document type (e.g., VSAL, Amdt, NDA, etc.)
-- `RMInitials`: (Optional) Relationship Manager initials for drafts
-
-See [shared-utility-functions](shared-utility-functions) for details on how metadata is extracted.
+- `OwnerInitials`: (Optional) Initials of individuals associated with vendor company, for drafts
 
 ## Documentation
 
@@ -30,9 +28,11 @@ See [shared-utility-functions](shared-utility-functions) for details on how meta
    pip install -r requirements.txt
    ```
 2. Update `EXCEL_PATH` and sheet/column names in the script to match your vendor Excel file.
-3. Run the notebook or import the functions as needed.
+3. Paste the file path of the files you'd like to rename into the indicated field
+4. Run the notebook
 
 ## Notes
 
-- Designed for legal/vendor document workflows, but adaptable to other use cases.
-- Review and adjust the code for your organization’s data policies and file structures.
+Although I tried to generalize this version, it was still designed to meet a specific standard. As I continue to learn more about programming and explore more advanced techniques, I would be open to revisiting this project to find ways to enhance its functionality for a broader range of contexts.
+
+Currently, while the program does save some time, the process is still monotonous. As you'll see, you can only process one file at a time. I plan to evolve the program into a batch processing solution for entire folders/directories once I am confident in its accuracy.
