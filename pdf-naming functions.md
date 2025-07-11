@@ -1,6 +1,6 @@
 `extract_date_strings`
 This function takes a chunk of text (usually from a PDF page) and scans it for anything that looks like a date. 
-It uses several regular expressions to catch a wide variety of date formats—everything from work specific-style dates (like 2024-07-09), to US-style (07/09/2024), to written-out dates (like "January 12, 2025" or "12 January 2025"). 
+It uses several regular expressions to catch a wide variety of date formats; like special cases 2024-07-09, to US-style (07/09/2024), to written-out dates (like "January 12, 2025" or "12 January 2025"). 
 It returns a list of all the date strings it finds, regardless of whether they’re valid or not. 
 This is the first step in pulling out any possible date information from the document.
 
