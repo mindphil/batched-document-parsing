@@ -7,7 +7,7 @@ Manually renaming legal and vendor documents is tedious and error-prone, especia
 Renamed files follow the specific pattern I use at work but can be easily amended: 
 
 ```
-YYYYMMDD-My Company Name-VendorName-DocType[-RMInitials]
+YYYYMMDD-ISO-VendorName-DocType[-RMInitials]
 ```
 - `YYYYMMDD`: Key date (last modified, effective, or signature date)
 - `ISO`: Organization code
