@@ -11,9 +11,9 @@ YYYYMMDD-ORG-VendorName-DocType[-OwnerInitials]
 ```
 - `YYYYMMDD`: Key date (last modified, effective, or signature date)
 - `ORG`: Organization acronym
-- `VendorName`: Inferred from filename or metadata
-- `DocType`: Detected document type (e.g., VSAL, Amdt, NDA, etc.)
-- `OwnerInitials`: (Optional) Initials of individuals associated with vendor company, for drafts
+- `VendorName`: Inferred from filename
+- `DocType`: Detected document type, also inferred from filename
+- `OwnerInitials`: (Optional) Initials of individuals associated with vendor company
 
 ## Documentation
 
