@@ -19,7 +19,7 @@ YYYYMMDD-ORG-VendorName-DocType[-OwnerInitials]
 
 - [shared-utility-functions](documentation/shared-utility-functions.md): Core utilities for metadata extraction and vendor matching
 - [draft-naming-function](documentation/(draft-naming-function.md ): Logic for draft document renaming
-- [pdf-naming-functions](documentation/pdf-naming functions.md): Logic for executed PDF document renaming
+- [pdf-naming-functions](documentation/pdf-naming-functions.md): Logic for executed PDF document renaming
 
 ## Quick Start
 
