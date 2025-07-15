@@ -35,4 +35,4 @@ YYYYMMDD-ORG-VendorName-DocType[-OwnerInitials]
 
 Although I tried to generalize this version, it was still designed to meet a specific standard. As I continue to learn more about programming and explore more advanced techniques, I would be open to revisiting this project to find ways to enhance its functionality for a broader range of contexts.
 
-Currently, while the program does save some time, the process is still monotonous. As you'll see, you can only process one file at a time. I plan to evolve the program into a batch processing solution for entire folders/directories once I am confident in its accuracy.
+Currently, while the program does save some time, the process is still monotonous. As you'll see, you can only process one file at a time. I plan to evolve the program into a batch processing solution for entire folders/directories once I am confident in its accuracy. See [problems](problems).
