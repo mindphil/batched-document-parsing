@@ -7,13 +7,17 @@ It then removes the file extension (e.g., .ect). This process truncates the stri
 Next, the matching algorithm uses the remaining portion to find a match in the Excel spreadsheet that is at least 60% accurate.
 Additionally, there are certain exclusions added to an 'ignore' list to improve the accuracy of the matching.
 
-Before executing the matching algorithm, the program uses regular expressions (re) to identify the four-digit IRD.
+Before executing the matching algorithm, the program uses regular expressions to identify the four-digit (easily configureable) ID.
 There are inclusions for an apostrophe and a letter, as the IRDs in the Excel file sometimes contain unusual apostrophes, and the file names are not consistent.
-If the program finds a match for the IRD, it uses the corresponding vendor name; if not, it resorts to guessing the vendor name.
+If the program finds a match for the IRD, it uses the corresponding vendor name; if not, it resorts to guessing.
 
 The main issue is that any exclusions not on the ignore list can cause the matching algorithm to fall below the minimum 60% accuracy threshold.
 While I can keep adding more keywords to improve the matching process, this approach is not efficient due to inconsistencies.
 Moreover, it won't help in cases where the file name does not include the vendor name at all and only consists of the file type.
+
+Best work around is to define the most consistent file path, in regards to naming convention, as a variable. Then use that in 'words', in place of the base filename. 
+This approach works pretty well, but there probably are better ways.
+
 
 **PDF Specific: Dating**
 
