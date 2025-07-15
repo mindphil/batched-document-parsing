@@ -31,3 +31,5 @@ A more advanced approach would be to model the process of finding dates.
 This would be preferable in cases where documents do not consistently follow dating practices, even if they belong to a category for which we have defined rules.
 Given the file type and context, a weighted model could more accurately identify the correct date.
 If trained properly, this model would result in a higher degree of both accuracy and precision. But my programming skills aren't quite there yet lol.
+
+Before we evolve the PDF reading and parsing process, I am going to try alternative pdf readers that may be more accurate. 
