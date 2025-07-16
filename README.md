@@ -13,7 +13,7 @@ YYYYMMDD-ORG-VendorName-DocType[-OwnerInitials]
 - `ORG`: Organization acronym
 - `VendorName`: Inferred from filename
 - `DocType`: Detected document type, also inferred from filename
-- `OwnerInitials`: (Optional) Initials of individuals associated with vendor company
+- `OwnerInitials`: Initials of individuals associated with vendor company
 
 ## Documentation
 
