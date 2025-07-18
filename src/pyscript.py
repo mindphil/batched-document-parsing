@@ -8,5 +8,4 @@ from rapidfuzz import process
 from dateutil import parser as date_parser
 
 excel_path = input(r"Enter the path to the Excel file: ")
-owner_df = pd.read_excel(excel_path, sheet_name= input("Please enter the name of the spreadsheet"), header=1)
-print()
+owner_df = pd.read_excel(excel_path, sheet_name= input("Please enter the name of the spreadsheet: "), header=1)
