@@ -216,4 +216,6 @@ else:
 
 # Atm, PDF pipeline does not have access to fuzzy matching from util.
 # may have to refactor as a class for inheretence to avoid gargantuan code-blocks
+# it may actually be the case that a class improves readability bc I have similar-
+# sounding functions in the draft & pdf namers that also call similar variables that are defined differently (kinda) but r the same really.
 # I also realized that, I don't really make it clear that the distinction between the two is how I have defined 'exectued'.
