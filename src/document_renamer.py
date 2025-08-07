@@ -31,11 +31,11 @@ class DocumentRenamer:
 
     def detect_doc_type(self, filename):
         name = filename.lower()
-        if "legal a" in name or "legal_a" in name:
-            return "Legal Document A"
-        elif "legal" in name or "legal document" in name:
-            return "Legal Document"
-        elif "amendment" in name or "amdt" in name:
+        #if "legal a" in name or "legal_a" in name:
+            #return "Legal Document A"
+        #elif "legal" in name or "legal document" in name:
+            #return "Legal Document"
+        if "amendment" in name or "amdt" in name:
             return "Amendment"
         elif "royalty" in name or "statement" in name:
             return "Royalty Statement"
@@ -64,8 +64,8 @@ class DocumentRenamer:
 
     def guess_vendor_from_filepath_or_id(self, filepath, filename):
         base = os.path.splitext(os.path.basename(filename))[0]
-        folder = os.path.dirname(filepath)
-        
+        folder = os.path.dirname(filepath)  # if the folder happens to be more consistent for guessing,
+                                            # use in place of base
         # Try to match ID pattern first
         id_match = re.search(r"'?\s*(\d{4}[A-Za-z]?)\s*'?", base)
         if id_match:
