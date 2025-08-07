@@ -17,7 +17,7 @@ class DocumentRenamer:
         except Exception as e:
             raise Exception(f"Error loading Excel file: {str(e)}")
     
-    #                           UTILITY METHODS 
+    #                            UTILITY METHODS 
     
     def get_initials(self, full_name):
         return ''.join([part[0].upper() for part in str(full_name).split() if part])
@@ -93,7 +93,7 @@ class DocumentRenamer:
             return match[0] if match else None
         return None
 
-    #                    DRAFT DOCUMENT METHODS 
+    #                           DRAFT DOCUMENT METHODS 
     
     def get_last_modified_date(self, filepath):
         timestamp = os.path.getmtime(filepath)
@@ -112,10 +112,9 @@ class DocumentRenamer:
         
         return f"{draft_date}-ORG-{guessed_vendor}-{doc_type}-{owner_initials}"
 
-    #                      EXECUTED (PDF) DOCUMENT METHODS 
+    #                          EXECUTED (PDF) DOCUMENT METHODS 
     
-    def extract_date_strings(self, text):
-        """Extract potential date strings using regex patterns."""
+    def extract_date_strings(self, text): #regex patterns
         patterns = [
             r'\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b',  # ISO format
             r'\b\d{1,2}/\d{1,2}/\d{4}\b',  # US format MM/DD/YYYY
@@ -137,13 +136,13 @@ class DocumentRenamer:
         for date_str in date_strings:
             try:
                 parsed_date = date_parser.parse(date_str, fuzzy=False)
-                if 1990 <= parsed_date.year <= current_year + 10: # hoping dates prior to 1990 are invalid
+                if 1990 <= parsed_date.year <= current_year + 10:
                     valid_dates.append(parsed_date)
             except (ValueError, TypeError):
                 continue
         return valid_dates
 
-    def find_effective_date_context(self, text):   # some agreement dates follow after "as effective of ..."
+    def find_effective_date_context(self, text): 
         effective_patterns = [
             r'effective\s+(?:as\s+of\s+)?([^.]{0,50}(?:\d{1,2}[/-]\d{1,2}[/-]\d{4}|\w+\s+\d{1,2},?\s+\d{4})[^.]{0,20})',
             r'(?:shall\s+be\s+)?effective\s+(?:on\s+)?([^.]{0,50}(?:\d{1,2}[/-]\d{1,2}[/-]\d{4}|\w+\s+\d{1,2},?\s+\d{4})[^.]{0,20})',
@@ -248,9 +247,10 @@ class DocumentRenamer:
         
         return f"{eff_date}-ORG-{guessed_vendor}-{doc_type}"
 
-    #                        MAIN INTERFACE METHODS 
+    #                 MAIN INTERFACE METHODS 
     
     def rename_document(self, filepath, doc_status, verbose=True):
+        """Main method to rename a document based on its status."""
         if not os.path.exists(filepath):
             raise FileNotFoundError(f"File not found: {filepath}")
         
@@ -263,7 +263,7 @@ class DocumentRenamer:
         else:
             raise ValueError("Document status must be either 'draft' or 'executed'")
 
-    def preview_rename(self, filepath, doc_status): # debug to preview single file name
+    def preview_rename(self, filepath, doc_status): #prev single names for debug
         try:
             new_name = self.rename_document(filepath, doc_status, verbose=True)
             original_name = os.path.basename(filepath)
@@ -280,18 +280,28 @@ class DocumentRenamer:
             print(f"Error generating preview: {str(e)}")
             return None
 
-    def batch_preview(self, directory, doc_status, file_pattern="*"): # debug to preview batch filename
+    def batch_preview(self, directory, doc_status, file_pattern="*"): # prev batch names for debug
         import glob
         
+        print(f"Checking directory: {directory}")
         if not os.path.exists(directory):
-            print(f"Directory not found: {directory}")
+            print(f"ERROR: Directory not found: {directory}")
             return
         
         pattern = os.path.join(directory, file_pattern)
+        print(f"Looking for files with pattern: {pattern}")
         files = glob.glob(pattern)
         
+        print(f"Found {len(files)} files")
         if not files:
             print(f"No files found matching pattern: {file_pattern}")
+            print(f"Directory contents:")
+            try:
+                all_files = os.listdir(directory)
+                for f in all_files:
+                    print(f"  - {f}")
+            except Exception as e:
+                print(f"  Error listing directory: {e}")
             return
         
         print(f"\nBatch Preview for {len(files)} files:")
@@ -304,7 +314,6 @@ class DocumentRenamer:
                 print(f"{os.path.basename(filepath)} → {new_name}{extension}")
             except Exception as e:
                 print(f"{os.path.basename(filepath)} → ERROR: {str(e)}")
-
 
 def main():
     parser = argparse.ArgumentParser(description='Smart Document Renamer')
@@ -329,8 +338,9 @@ def main():
 
     try:
         # Initialize the renamer
+        print(f"Loading Excel file: {args.excel}")
         renamer = DocumentRenamer(args.excel, args.sheet, args.header)
-        print(f"Loaded vendor data: {len(renamer.owner_df)} records")
+        print(f"✓ Loaded vendor data: {len(renamer.owner_df)} records")
 
         if args.file:
             # Single file processing
@@ -364,7 +374,6 @@ def main():
         return 1
 
     return 0
-
 
 if __name__ == "__main__":
     exit(main())
