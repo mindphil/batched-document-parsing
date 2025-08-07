@@ -131,14 +131,13 @@ class DocumentRenamer:
         return all_dates
 
     def parse_and_validate_dates(self, date_strings):
-        """Parse date strings and filter out invalid ones."""
         valid_dates = []
         current_year = datetime.now().year
 
         for date_str in date_strings:
             try:
                 parsed_date = date_parser.parse(date_str, fuzzy=False)
-                if 1990 <= parsed_date.year <= current_year + 10:
+                if 1990 <= parsed_date.year <= current_year + 10: # hoping dates prior to 1990 are invalid
                     valid_dates.append(parsed_date)
             except (ValueError, TypeError):
                 continue
@@ -264,7 +263,7 @@ class DocumentRenamer:
         else:
             raise ValueError("Document status must be either 'draft' or 'executed'")
 
-    def preview_rename(self, filepath, doc_status): # debug to preview what the name would be
+    def preview_rename(self, filepath, doc_status): # debug to preview single file name
         try:
             new_name = self.rename_document(filepath, doc_status, verbose=True)
             original_name = os.path.basename(filepath)
@@ -281,8 +280,7 @@ class DocumentRenamer:
             print(f"Error generating preview: {str(e)}")
             return None
 
-    def batch_preview(self, directory, doc_status, file_pattern="*"):
-        """Preview renames for multiple files in a directory."""
+    def batch_preview(self, directory, doc_status, file_pattern="*"): # debug to preview batch filename
         import glob
         
         if not os.path.exists(directory):
