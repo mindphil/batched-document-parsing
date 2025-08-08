@@ -11,7 +11,7 @@ import glob
 # ================================
 # CONFIGURATION SECTION
 # ================================
-EXCEL_PATH = r"C:\Users\I1000928\Projects\smart-document-renamer\vendors.xlsx"  # Configure your spreadsheet path here
+EXCEL_PATH = "project\vendors.xlsx"  # Configure your spreadsheet path here
 HEADER_ROW = 1  # Row number where headers are located (0-indexed)
 
 # Column names - change these to the column name
@@ -105,12 +105,8 @@ class DocumentRenamer:
         # Fallback: fuzzy matching on vendor names using folder names
         words = re.split(r'[\s\-_\.]+', folder)
         ignore = {
-            'verisk', 'strategic', 'alliance', 'agreement', 'moved', 'to', 'database',
-            'do', 'not', 'edit', 'or', 'save', 'files', 'here', 'annex', 'draft',
-            'revised', 'agreement', 'amendment', 'letter', 'reminder', 'setup', 'memo',
-            'final', 'executed', 'signed', 'vsa', 'iso', 'llc', 'inc', 'corp',
-            'company', 'co', 'the', 'of', 'and', 'a', 'b', 'c', 'proposal', 'forms',
-            'rules', 'loss', 'costs', 'business', 'development', 'tm', 'drafts'
+            'stuff you probably want skewing the algo',
+            'business', 'development', 'tm', 'drafts'
         }
         
         vendor_guess = ' '.join([
@@ -260,7 +256,7 @@ class DocumentRenamer:
         eff_date = self.select_pdf_date_for_naming(filepath)
         doc_type = self.detect_doc_type(os.path.basename(filepath))
         
-        return f"{eff_date}-ISO-{guessed_vendor}-{doc_type}"
+        return f"{eff_date}-ORG-{guessed_vendor}-{doc_type}"
 
     # ================================
     # BATCH PROCESSING METHODS 
