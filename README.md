@@ -6,17 +6,35 @@ All methods now have access to vendor_names, id_list, and owner_df
 Utility functions are shared between draft and executed pipelines
 Draft vs executed logic is cleanly separated but inherits from the same base
 
-2. Command Line Interface
+1.3 Configuration Section at Top
+
+`EXCEL_PATH:` Set your vendor spreadsheet path once here
+`HEADER_ROW:` Configure which row contains headers (0-indexed)
+Column name variables (`VENDOR_COLUMN`, `ID_COLUMN`, `OWNER_COLUMN`) that can be changed in one place
+
+1.6. Automatic Sheet Selection
+
+Now automatically uses the first sheet in the Excel file
+No need to specify sheet name in command line
+
+1.9. Simplified Functionality
+
+Removed all single-file processing code
+Focused entirely on batch processing
+Cleaner command-line interface
 
 ```bash
-# Single file with preview
-python src\document_renamer.py --excel vendors.xlsx --file "contract.pdf" --status executed --preview
+# Preview mode (default - shows what would be renamed)
+python document_renamer.py /path/to/directory --status executed
 
-# Batch preview
-python src\document_renamer.py --excel vendors.xlsx --directory "/path/to/docs" --status draft --preview
+# Actually rename files
+python document_renamer.py /path/to/directory --status executed --rename
 
-# Interactive mode
-python src\document_renamer.py --excel vendors.xlsx --status executed
+# Process only PDF files
+python document_renamer.py /path/to/directory --status executed --pattern "*.pdf"
+
+# Process draft Word documents
+python document_renamer.py /path/to/directory --status draft --pattern "*.docx"
 ```
 
 3. Enhanced Fuzzy Matching
