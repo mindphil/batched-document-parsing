@@ -19,9 +19,7 @@ No need to specify sheet name in command line
 
 1.9. Simplified Functionality
 
-Removed all single-file processing code
-Focused entirely on batch processing
-Cleaner command-line interface
+Removed all single-file processing code, focused entirely on batch processing, cleaner command-line interface
 
 ```bash
 # Preview mode (default - shows what would be renamed)
