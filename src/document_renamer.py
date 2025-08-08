@@ -118,7 +118,7 @@ class DocumentRenamer:
         doc_type = self.detect_doc_type(os.path.basename(filepath))
         owner_initials = self.get_owner_initials(guessed_vendor)
         
-        return f"{draft_date}-ISO-{guessed_vendor}-{doc_type}-{owner_initials}"
+        return f"{draft_date}-ORG-{guessed_vendor}-{doc_type}-{owner_initials}"
 
     # ================================
     # EXECUTED (PDF) DOCUMENT METHODS 
@@ -186,7 +186,7 @@ class DocumentRenamer:
                 first_page_clean = re.sub(r'\s+', ' ', first_page_text.strip())
                 last_page_clean = re.sub(r'\s+', ' ', last_page_text.strip())
                 
-                # Priority 1: For Legal documents, prioritize first page
+                # Priority 1: For "Legal" documents, prioritize first page # change "legal" to the doc type preference
                 if doc_type and doc_type.startswith("Legal"):
                     dates = self.parse_and_validate_dates(self.extract_date_strings(first_page_clean))
                     if dates:
