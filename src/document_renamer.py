@@ -11,7 +11,7 @@ import glob
 # ================================
 # CONFIGURATION SECTION
 # ================================
-EXCEL_PATH = "path/to/your/vendor_spreadsheet.xlsx"  # Configure your spreadsheet path here
+EXCEL_PATH = r"C:\Users\I1000928\Projects\smart-document-renamer\vendors.xlsx"  # Configure your spreadsheet path here
 HEADER_ROW = 1  # Row number where headers are located (0-indexed)
 
 # Column names - change these to the column name
