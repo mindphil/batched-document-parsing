@@ -1,4 +1,5 @@
-# debug_test.py - Quick test to see what's happening
+# debug functionality has been added into main program, 
+# made this when I was init testing class functionality.
 
 import os
 import pandas as pd
