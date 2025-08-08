@@ -60,30 +60,10 @@ class DocumentRenamer:
     def detect_doc_type(self, filename):
         name = filename.lower()
         
-        if "amendment" in name or "amdt" in name:
-            return "Amendment"
-        elif "royalty" in name or "statement" in name:
-            return "Royalty Statement"
-        elif "reminder" in name or "reminder letter" in name or "annual reminder" in name:
-            return "Annual Reminder Letter"
-        elif "annual" in name or "annual letter" in name:
-            return "Annual Letter"
-        elif "annex a" in name or "annex_a" in name:
-            return "Annex A"
-        elif "annex b" in name or "annex_b" in name:
-            return "Annex B"
-        elif "annex c" in name or "annex_c" in name:
-            return "Annex C"
-        elif "annex d" in name or "annex_d" in name:
-            return "Annex D"
-        elif "annex" in name:
-            return "Annex"
-        elif "agreement" in name:
-            return "Agreement"
-        elif "proposal" in name:
-            return "Proposal"
-        elif "nda" in name or "non disclosure" in name:
-            return "NDA"
+        if "something you need" in name or "to detect" in name:
+            return "what you'd like"
+        elif "something else" in name or "random junk" in name:
+            return "this instead"
         else:
             return "Other"
 
