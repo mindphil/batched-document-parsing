@@ -61,3 +61,9 @@ The distinction between drfat and executed is now explicit:
 - Draft: Uses file modification date, includes owner initials
 
 - Executed: Extracts dates from PDF content, no initials (assumes final document)
+
+  # Needed improvments
+
+The program relies on files being stored in a consistent directory. There are two variables defined to be for the fuzzy match. `folder` and `base`. `folder` is the file-path, split by the delimiters ('/', '-', '_' ect.) `base` is the file name itself, excluding the extension. If the files have the name of the vendor, use `base` in `words`. If the folder/directory has the name (which it usually does moreso than the filename) use `folder` in `words`. A more sophisticated method can be devised for more precision.
+
+PyPDF parsing isn't bad but a method with OCR would be the most accurate. AWS's textract seems to be the standard, but that costs money. Another great, open source model is tesseract. I'll look into that.
