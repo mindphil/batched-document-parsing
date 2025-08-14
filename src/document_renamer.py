@@ -126,11 +126,11 @@ class DocumentRenamer:
     
     def extract_date_strings(self, text): # regex patterns
         patterns = [
-            r'\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b',  # ISO format
-            r'\b\d{1,2}/\d{1,2}/\d{4}\b',  # US format MM/DD/YYYY
-            r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}\b',
-            r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}\b',
-            r'\b\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b',
+            r'\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b',  # YYYYMMDD 
+            r'\b\d{1,2}/\d{1,2}/\d{4}\b',  # MM/DD/YYYY
+            r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}\b', # Month, day, yr
+            r'\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}\b', # abbrv month, day, yr
+            r'\b\d{1,2}(?:st|nd|rd|th)?\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b', #day mon yr
         ]
         
         all_dates = []
